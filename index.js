@@ -18,9 +18,12 @@ module.exports = function execSeries(commands, options, cb) {
     if (typeof options === 'function') {
       cb = options;
       options = {};
+    } else {
+      cb = cb || function() {};
     }
+  } else if (typeof cb !== 'function') {
+    throw new TypeError(cb + ' is not a function.');
   }
-  cb = cb || function() {};
 
   var stdouts = [];
   var stderrs = [];

@@ -8,7 +8,7 @@ var rimraf = require('rimraf');
 var test = require('tape');
 
 test('execSeries()', function(t) {
-  t.plan(14);
+  t.plan(15);
 
   execSeries(['mkdir tmp']);
   setTimeout(function() {
@@ -53,7 +53,12 @@ test('execSeries()', function(t) {
   });
 
   t.throws(
-    execSeries.bind(null, 'node -v'),
+    execSeries.bind(null, 'node -v'), /TypeError/,
     'should throw a type error when its first argument is not an array.'
+  );
+
+  t.throws(
+    execSeries.bind(null, ['node -v'], {}, 'function'), /TypeError/,
+    'should throw a type error when its third argument is specified but not a function.'
   );
 });
