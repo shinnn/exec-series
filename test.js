@@ -3,19 +3,20 @@
 var fs = require('fs');
 
 var execSeries = require('./');
+var isAppveyor = require('is-appveyor');
 var rimraf = require('rimraf');
 var test = require('tape');
 
 test('execSeries()', function(t) {
   t.plan(14);
 
-  execSeries(['node -e "require(\'fs\').writeFileSync(\'tmp\', 1)"']);
+  execSeries(['mkdir tmp']);
   setTimeout(function() {
     fs.exists('tmp', function(result) {
-      t.ok(result, 'should run command even if the callback is not specified.');
+      t.ok(result, 'should run the command even if the callback is not specified.');
       rimraf.sync('tmp');
     });
-  }, 150);
+  }, isAppveyor ? /* istanbul ignore next */ 3000 : 120);
 
   execSeries(['node -e "console.log(1)"'], function(err, stdout, stderr) {
     t.strictEqual(err, undefined, 'should not fail when a command doesn\'t fail.');
