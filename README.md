@@ -21,17 +21,17 @@ execSeries(['echo "foo"', 'echo "bar"'], function(err, stdouts, stderrs) {
 });
 ```
 
-On Linux, you can do the almost same thing with [`&&`](http://tldp.org/LDP/abs/html/list-cons.html#LISTCONSREF) operator like below;
+On Linux, you can do almost the same thing with [`&&`](http://tldp.org/LDP/abs/html/list-cons.html#LISTCONSREF) operator like below:
 
 ```javascript
 var exec = require('child_process').exec;
 
-exec('echo "foo" && echo "bar"', function(err, stdouts, stderrs) {
+exec('echo "foo" && echo "bar"', function(err, stdout, stderr) {
   //...
-}
+});
 ```
 
-However, some environments, such as [Windows Powershell](https://connect.microsoft.com/PowerShell/feedback/details/778798/implement-the-and-operators-that-bash-has), don't support `&&` operator. This module is useful when you want to create a cross-platform Node program.
+However, some environments, such as [Windows PowerShell](https://connect.microsoft.com/PowerShell/feedback/details/778798/implement-the-and-operators-that-bash-has), don't support `&&` operator. This module is useful when you want to create a cross-platform Node program.
 
 ## Installation
 
