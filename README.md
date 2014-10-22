@@ -31,7 +31,7 @@ exec('echo "foo" && echo "bar"', function(err, stdout, stderr) {
 });
 ```
 
-However, some environments, such as [Windows PowerShell](https://connect.microsoft.com/PowerShell/feedback/details/778798/implement-the-and-operators-that-bash-has), don't support `&&` operator. This module helps you to create a cross-platform Node program.
+However, some environments, such as [Windows PowerShell](https://connect.microsoft.com/PowerShell/feedback/details/778798/implement-the-and-operators-that-bash-has), don't support `&&` operator. This module helps you to create a [cross-platform Node program](https://gist.github.com/domenic/2790533).
 
 ## Installation
 
