@@ -31,7 +31,7 @@ exec('echo "foo" && echo "bar"', function(err, stdout, stderr) {
 });
 ```
 
-However, some environments, such as [Windows PowerShell](https://connect.microsoft.com/PowerShell/feedback/details/778798/implement-the-and-operators-that-bash-has), don't support `&&` operator. This module helps you to create a [cross-platform Node program](https://gist.github.com/domenic/2790533).
+However, some environments, such as [Windows PowerShell](https://connect.microsoft.com/PowerShell/feedback/details/778798/implement-the-and-operators-that-bash-has), don't support `&&` operator. This module helps you to [create a cross-platform Node program](https://gist.github.com/domenic/2790533).
 
 ## Installation
 
@@ -49,7 +49,7 @@ npm install exec-series
 var execSeries = require('exec-series');
 ```
 
-### execSeries(*commands* [, options, callback])
+### execSeries(*commands* [, *options*, *callback*])
 
 *commands*: `Array` of `String` (the commands to run)  
 *options*: `Object` ([child_process.exec][exec] options)  
@@ -61,7 +61,7 @@ When the last command has finished, it runs the callback function.
 
 When one of the commands fails, it immediately calls the callback function and the rest of the commands won't run.
 
-#### callback(error, stdoutArray, stderrArray)
+#### callback(*error*, *stdoutArray*, *stderrArray*)
 
 *error*: `Error` if one of the commands fails, otherwise `undefined`  
 *stdoutArray*: `Array` of `String` (stdout of the commands)  
