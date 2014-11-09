@@ -34,16 +34,16 @@
     "order"
   ],
   "dependencies": {
-    "async-each-series": "^0.1.0"
+    "async-each-series": "^0.1.1"
   },
   "devDependencies": {
-    "eslint": "^0.8.2",
+    "eslint": "^0.9.2",
     "is-appveyor": "^1.0.0",
     "istanbul": "^0.3.2",
     "istanbul-coveralls": "^1.0.1",
     "jscs": "^1.7.3",
     "rimraf": "^2.2.8",
     "tap-spec": "^1.0.1",
-    "tape": "^3.0.1"
+    "tape": "^3.0.2"
   }
 }
