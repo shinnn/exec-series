@@ -10,13 +10,19 @@ var test = require('tape');
 test('execSeries()', function(t) {
   t.plan(15);
 
+  var waitTime = 120;
+  /* istanbul ignore if */
+  if (isAppveyor) {
+    waitTime = 3000;
+  }
+
   execSeries(['mkdir tmp']);
   setTimeout(function() {
     fs.exists('tmp', function(result) {
       t.ok(result, 'should run the command even if the callback is not specified.');
       rimraf.sync('tmp');
     });
-  }, isAppveyor ? /* istanbul ignore next */ 3000 : 120);
+  }, waitTime);
 
   execSeries(['node -e "console.log(1)"'], function(err, stdout, stderr) {
     t.strictEqual(err, undefined, 'should not fail when a command doesn\'t fail.');
