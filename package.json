@@ -44,6 +44,10 @@
     "jscs": "^1.7.3",
     "rimraf": "^2.2.8",
     "tap-spec": "^1.0.1",
-    "tape": "^3.0.2"
+    "tape": "^3.0.3"
+  },
+  "jscsConfig": {
+    "preset": "google",
+    "maximumLineLength": 98
   }
 }
