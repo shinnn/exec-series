@@ -1,6 +1,7 @@
 'use strict';
 
 var fs = require('fs');
+var path = require('path');
 
 var execSeries = require('./');
 var isAppveyor = require('is-appveyor');
@@ -13,12 +14,15 @@ test('execSeries()', function(t) {
   var waitTime = 120;
   /* istanbul ignore if */
   if (isAppveyor) {
-    waitTime = 3000;
+    waitTime = 5000;
   }
 
-  execSeries(['mkdir tmp']);
+  execSeries([
+    'mkdir ' + path.resolve('tmp'),
+    'mkdir ' + path.resolve('tmp/tmp')
+  ]);
   setTimeout(function() {
-    fs.exists('tmp', function(result) {
+    fs.exists('tmp/tmp', function(result) {
       t.ok(result, 'should run the command even if the callback is not specified.');
       rimraf.sync('tmp');
     });
