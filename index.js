@@ -35,6 +35,6 @@ module.exports = function execSeries(commands, options, cb) {
       next(err);
     });
   }, function(err) {
-    cb(err, stdouts, stderrs);
+    cb(err || null, stdouts, stderrs);
   });
 };

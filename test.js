@@ -25,7 +25,7 @@ test('execSeries()', function(t) {
   }, waitTime);
 
   execSeries(['node -e "console.log(1)"'], function(err, stdout, stderr) {
-    t.strictEqual(err, undefined, 'should not fail when a command doesn\'t fail.');
+    t.strictEqual(err, null, 'should not fail when a command doesn\'t fail.');
     t.deepEqual(stdout, ['1\n'], 'should create an array of the stdout string.');
     t.deepEqual(stderr, [''], 'should create an array of the stderr string.');
   });
@@ -34,7 +34,7 @@ test('execSeries()', function(t) {
     'node -e "console.log(1)"',
     'node -e "console.log(2); console.warn(1);"'
   ], function(err, stdout, stderr) {
-    t.strictEqual(err, undefined, 'should not fail when every command doesn\'t fail.');
+    t.strictEqual(err, null, 'should not fail when every command doesn\'t fail.');
     t.deepEqual(stdout, ['1\n', '2\n'], 'should create an array of the multiple stdout strings.');
     t.deepEqual(stderr, ['', '1\n'], 'should create an array of the multiple stderr strings.');
   });
@@ -54,7 +54,7 @@ test('execSeries()', function(t) {
   });
 
   execSeries(['node -e "console.log(1)"'], {encoding: 'base64'}, function(err, stdout) {
-    t.strictEqual(err, undefined, 'should accept `exec` options.');
+    t.strictEqual(err, null, 'should accept `exec` options.');
     t.deepEqual(stdout, ['MQo='], 'should reflect `exec` options to the output.');
   });
 
