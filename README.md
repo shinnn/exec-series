@@ -16,7 +16,7 @@ execSeries(['echo "foo"', 'echo "bar"'], function(err, stdouts, stderrs) {
     throw err;
   }
 
-  console.log(stdouts); // yields: ['foo', 'bar']
+  console.log(stdouts); // yields: ['foo\n', 'bar\n']
   console.log(stderrs); // yields: ['', '']
 });
 ```
@@ -57,9 +57,9 @@ var execSeries = require('exec-series');
 
 It sequentially runs the commands using [child_process.exec][exec]. If the first command has finished successfully, the second command will run, and so on.
 
-When the last command has finished, it runs the callback function.
+After the last command has finished, it runs the callback function.
 
-When one of the commands fails, it immediately calls the callback function and the rest of the commands won't run.
+When one of the commands fails, it immediately calls the callback function and the rest of the commands won't be run.
 
 #### callback(*error*, *stdoutArray*, *stderrArray*)
 
