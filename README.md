@@ -1,10 +1,10 @@
 # exec-series
 
-[![Build Status](https://travis-ci.org/shinnn/exec-series.svg?branch=master)](https://travis-ci.org/shinnn/exec-series)
+[![Build Status](https://img.shields.io/travis/shinnn/exec-series.svg?style=flat)](https://travis-ci.org/shinnn/exec-series)
 [![Build status](https://ci.appveyor.com/api/projects/status/bi4pflltlq5368ym?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/exec-series)
-[![Coverage Status](https://img.shields.io/coveralls/shinnn/exec-series.svg)](https://coveralls.io/r/shinnn/exec-series)
-[![Dependency Status](https://david-dm.org/shinnn/exec-series.svg)](https://david-dm.org/shinnn/exec-series)
-[![devDependency Status](https://david-dm.org/shinnn/exec-series/dev-status.svg)](https://david-dm.org/shinnn/exec-series#info=devDependencies)
+[![Coverage Status](https://img.shields.io/coveralls/shinnn/exec-series.svg?style=flat)](https://coveralls.io/r/shinnn/exec-series)
+[![Dependency Status](https://david-dm.org/shinnn/exec-series.svg?style=flat)](https://david-dm.org/shinnn/exec-series)
+[![devDependency Status](https://david-dm.org/shinnn/exec-series/dev-status.svg?style=flat)](https://david-dm.org/shinnn/exec-series#info=devDependencies)
 
 A [Node](http://nodejs.org/) module to run commands in order
 
@@ -35,9 +35,9 @@ However, some environments, such as [Windows PowerShell](https://connect.microso
 
 ## Installation
 
-[![NPM version](https://badge.fury.io/js/exec-series.svg)](https://www.npmjs.org/package/exec-series)
+[![NPM version](https://img.shields.io/npm/v/exec-series.svg?style=flat)](https://www.npmjs.com/package/exec-series)
 
-[Use npm](https://www.npmjs.org/doc/cli/npm-install.html).
+[Use npm.](https://docs.npmjs.com/cli/install)
 
 ```
 npm install exec-series
