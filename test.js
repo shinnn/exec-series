@@ -9,7 +9,7 @@ var rimraf = require('rimraf');
 var test = require('tape');
 
 test('execSeries()', function(t) {
-  t.plan(15);
+  t.plan(10);
 
   var waitTime = 120;
   /* istanbul ignore if */
@@ -29,18 +29,22 @@ test('execSeries()', function(t) {
   }, waitTime);
 
   execSeries(['node -e "console.log(1)"'], function(err, stdout, stderr) {
-    t.strictEqual(err, null, 'should not fail when a command doesn\'t fail.');
-    t.deepEqual(stdout, ['1\n'], 'should create an array of the stdout string.');
-    t.deepEqual(stderr, [''], 'should create an array of the stderr string.');
+    t.deepEqual(
+      [err, stdout, stderr],
+      [null, ['1\n'], ['']],
+      'should pass arrays of stdout and stderr.'
+    );
   });
 
   execSeries([
     'node -e "console.log(1)"',
     'node -e "console.log(2); console.warn(1);"'
   ], function(err, stdout, stderr) {
-    t.strictEqual(err, null, 'should not fail when every command doesn\'t fail.');
-    t.deepEqual(stdout, ['1\n', '2\n'], 'should create an array of the multiple stdout strings.');
-    t.deepEqual(stderr, ['', '1\n'], 'should create an array of the multiple stderr strings.');
+    t.deepEqual(
+      [err, stdout, stderr],
+      [null, ['1\n', '2\n'], ['', '1\n']],
+      'should pass arrays of multiple stdout and stderr.'
+    );
   });
 
   execSeries([
@@ -58,17 +62,22 @@ test('execSeries()', function(t) {
   });
 
   execSeries(['node -e "console.log(1)"'], {encoding: 'base64'}, function(err, stdout) {
-    t.strictEqual(err, null, 'should accept `exec` options.');
-    t.deepEqual(stdout, ['MQo='], 'should reflect `exec` options to the output.');
+    t.deepEqual(
+      [err, stdout],
+      [null, [new Buffer('1\n').toString('base64')]],
+      'should reflect `exec`\'s options to the output.'
+    );
   });
 
   t.throws(
-    execSeries.bind(null, 'node -v'), /TypeError/,
+    execSeries.bind(null, 'node -v'),
+    /TypeError.*not an array/,
     'should throw a type error when its first argument is not an array.'
   );
 
   t.throws(
-    execSeries.bind(null, ['node -v'], {}, 'function'), /TypeError/,
+    execSeries.bind(null, ['node -v'], {}, 'function'),
+    /TypeError.*must be a function/,
     'should throw a type error when its third argument is specified but not a function.'
   );
 });
