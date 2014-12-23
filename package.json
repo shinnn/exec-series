@@ -40,7 +40,6 @@
   },
   "devDependencies": {
     "eslint": "^0.10.2",
-    "is-appveyor": "^1.0.0",
     "istanbul": "^0.3.5",
     "istanbul-coveralls": "^1.0.1",
     "jscs": "^1.8.1",

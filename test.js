@@ -4,29 +4,26 @@ var fs = require('fs');
 var path = require('path');
 
 var execSeries = require('./');
-var isAppveyor = require('is-appveyor');
 var rimraf = require('rimraf');
 var test = require('tape');
 
 test('execSeries()', function(t) {
-  t.plan(10);
+  t.plan(11);
 
-  var waitTime = 120;
-  /* istanbul ignore if */
-  if (isAppveyor) {
-    waitTime = 5000;
-  }
+  var tmpPath = path.resolve('__this__is__a__temporary__directory__', 'foobarbazqux');
 
   execSeries([
-    'mkdir ' + path.resolve('tmp'),
-    'mkdir ' + path.resolve('tmp/tmp')
+    'mkdir ' + path.dirname(tmpPath),
+    'mkdir ' + tmpPath
   ]);
+
   setTimeout(function() {
-    fs.exists('tmp/tmp', function(result) {
-      t.ok(result, 'should run the command even if the callback is not specified.');
-      rimraf.sync('tmp');
+    fs.stat(tmpPath, function(err, stats) {
+      t.strictEqual(err, null, 'should regard callback function as optional.');
+      t.ok(stats.isDirectory(), 'should run commands.');
+      rimraf.sync(path.dirname(tmpPath));
     });
-  }, waitTime);
+  }, 50 + !!process.env.CI * 5000);
 
   execSeries(['node -e "console.log(1)"'], function(err, stdout, stderr) {
     t.deepEqual(
