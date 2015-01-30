@@ -23,7 +23,7 @@ test('execSeries()', function(t) {
       t.ok(stats.isDirectory(), 'should run commands.');
       rimraf.sync(path.dirname(tmpPath));
     });
-  }, 50 + !!process.env.CI * 5000);
+  }, 120 + Number(!!process.env.CI) * 5000);
 
   execSeries(['node -e "console.log(1)"'], function(err, stdout, stderr) {
     t.deepEqual(
