@@ -1,10 +1,11 @@
 # exec-series
 
+[![NPM version](https://img.shields.io/npm/v/exec-series.svg?style=flat)](https://www.npmjs.com/package/exec-series)
 [![Build Status](https://img.shields.io/travis/shinnn/exec-series.svg?style=flat)](https://travis-ci.org/shinnn/exec-series)
 [![Build status](https://ci.appveyor.com/api/projects/status/bi4pflltlq5368ym?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/exec-series)
 [![Coverage Status](https://img.shields.io/coveralls/shinnn/exec-series.svg?style=flat)](https://coveralls.io/r/shinnn/exec-series)
-[![Dependency Status](https://david-dm.org/shinnn/exec-series.svg?style=flat)](https://david-dm.org/shinnn/exec-series)
-[![devDependency Status](https://david-dm.org/shinnn/exec-series/dev-status.svg?style=flat)](https://david-dm.org/shinnn/exec-series#info=devDependencies)
+[![Dependency Status](https://img.shields.io/david/shinnn/exec-series.svg?style=flat&label=deps)](https://david-dm.org/shinnn/exec-series)
+[![devDependency Status](https://img.shields.io/david/dev/shinnn/exec-series.svg?style=flat&label=devDeps)](https://david-dm.org/shinnn/exec-series#info=devDependencies)
 
 A [Node](http://nodejs.org/) module to run commands in order
 
@@ -34,8 +35,6 @@ exec('echo "foo" && echo "bar"', function(err, stdout, stderr) {
 However, some environments, such as [Windows PowerShell](https://connect.microsoft.com/PowerShell/feedback/details/778798/implement-the-and-operators-that-bash-has), don't support `&&` operator. This module helps you to [create a cross-platform Node program](https://gist.github.com/domenic/2790533).
 
 ## Installation
-
-[![NPM version](https://img.shields.io/npm/v/exec-series.svg?style=flat)](https://www.npmjs.com/package/exec-series)
 
 [Use npm.](https://docs.npmjs.com/cli/install)
 
@@ -96,7 +95,7 @@ setTimeout(function() {
 
 ## License
 
-Copyright (c) 2014 [Shinnosuke Watanabe](https://github.com/shinnn)
+Copyright (c) 2014 - 2015 [Shinnosuke Watanabe](https://github.com/shinnn)
 
 Licensed under [the MIT License](./LICENSE).
 
