@@ -1,18 +1,18 @@
 # exec-series
 
-[![NPM version](https://img.shields.io/npm/v/exec-series.svg?style=flat)](https://www.npmjs.com/package/exec-series)
-[![Build Status](https://img.shields.io/travis/shinnn/exec-series.svg?style=flat)](https://travis-ci.org/shinnn/exec-series)
+[![NPM version](https://img.shields.io/npm/v/exec-series.svg)](https://www.npmjs.com/package/exec-series)
+[![Build Status](https://travis-ci.org/shinnn/exec-series.svg?branch=master)](https://travis-ci.org/shinnn/exec-series)
 [![Build status](https://ci.appveyor.com/api/projects/status/bi4pflltlq5368ym?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/exec-series)
-[![Coverage Status](https://img.shields.io/coveralls/shinnn/exec-series.svg?style=flat)](https://coveralls.io/r/shinnn/exec-series)
-[![Dependency Status](https://img.shields.io/david/shinnn/exec-series.svg?style=flat&label=deps)](https://david-dm.org/shinnn/exec-series)
-[![devDependency Status](https://img.shields.io/david/dev/shinnn/exec-series.svg?style=flat&label=devDeps)](https://david-dm.org/shinnn/exec-series#info=devDependencies)
+[![Coverage Status](https://img.shields.io/coveralls/shinnn/exec-series.svg)](https://coveralls.io/r/shinnn/exec-series)
+[![Dependency Status](https://img.shields.io/david/shinnn/exec-series.svg?label=deps)](https://david-dm.org/shinnn/exec-series)
+[![devDependency Status](https://img.shields.io/david/dev/shinnn/exec-series.svg?label=devDeps)](https://david-dm.org/shinnn/exec-series#info=devDependencies)
 
-A [Node](http://nodejs.org/) module to run commands in order
+A [Node](https://nodejs.org/) module to run commands in order
 
 ```javascript
-var execSeries = require('exec-series');
+const execSeries = require('exec-series');
 
-execSeries(['echo "foo"', 'echo "bar"'], function(err, stdouts, stderrs) {
+execSeries(['echo "foo"', 'echo "bar"'], (err, stdouts, stderrs) => {
   if (err) {
     throw err;
   }
@@ -25,9 +25,9 @@ execSeries(['echo "foo"', 'echo "bar"'], function(err, stdouts, stderrs) {
 On Linux, you can do almost the same thing with [`&&`](http://tldp.org/LDP/abs/html/list-cons.html#LISTCONSREF) operator like below:
 
 ```javascript
-var exec = require('child_process').exec;
+const {exec} = require('child_process');
 
-exec('echo "foo" && echo "bar"', function(err, stdout, stderr) {
+exec('echo "foo" && echo "bar"', (err, stdout, stderr) => {
   //...
 });
 ```
@@ -45,7 +45,7 @@ npm install exec-series
 ## API
 
 ```javascript
-var execSeries = require('exec-series');
+const execSeries = require('exec-series');
 ```
 
 ### execSeries(*commands* [, *options*, *callback*])
@@ -72,13 +72,13 @@ execSeries([
   'echo bar',
   'exit 200',
   'mkdir baz'
-], function(err, stdouts, stderrs) {
+], (err, stdouts, stderrs) => {
   err.code; //=> 200
   stdouts; //=> ['', 'bar\n', '']
   stderrs; //=> ['', '', '']
   
-  fs.existsSync('foo'); //=> true
-  fs.existsSync('baz'); //=> false
+  fs.statSync('foo').isDirectory; //=> true
+  fs.statSync('baz'); // throw an error
 });
 ```
 
@@ -87,9 +87,9 @@ Callback function is optional.
 ```javascript
 execSeries(['mkdir foo', 'mkdir bar']);
 
-setTimeout(function() {
-  fs.existsSync('foo'); //=> true
-  fs.existsSync('bar'); //=> true
+setTimeout(() => {
+  fs.statSync('foo').isDirectory(); //=> true
+  fs.statSync('bar').isDirectory(); //=> true
 }, 1000);
 ```
 
@@ -99,4 +99,4 @@ Copyright (c) 2014 - 2015 [Shinnosuke Watanabe](https://github.com/shinnn)
 
 Licensed under [the MIT License](./LICENSE).
 
-[exec]: http://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback
+[exec]: https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback
