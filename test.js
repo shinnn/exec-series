@@ -8,7 +8,9 @@ var rimraf = require('rimraf');
 var test = require('tape');
 
 test('execSeries()', function(t) {
-  t.plan(11);
+  t.plan(13);
+
+  t.equal(execSeries.name, 'execSeries', 'should have a function name.');
 
   var tmpPath = path.resolve('__this__is__a__temporary__directory__', 'foobarbazqux');
 
@@ -70,6 +72,12 @@ test('execSeries()', function(t) {
     execSeries.bind(null, 'node -v'),
     /TypeError.*not an array/,
     'should throw a type error when its first argument is not an array.'
+  );
+
+  t.throws(
+    execSeries.bind(null, ['node -v'], {uid: 'foo'}, t.fail),
+    /TypeError.*uid/,
+    'should throw a type error when it takes an invalid `child_process.exec` option.'
   );
 
   t.throws(
