@@ -5,7 +5,7 @@
   "repository": "shinnn/exec-series",
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
   "scripts": {
-    "pretest": "eslint --config node_modules/@shinnn/eslintrc-node/rc.json index.js test.js",
+    "pretest": "eslint --fix --config @shinnn/node-legacy index.js test.js",
     "test": "node test.js | tap-spec",
     "coverage": "istanbul cover test.js",
     "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
@@ -27,15 +27,15 @@
     "order"
   ],
   "dependencies": {
-    "async-each-series": "^1.0.0"
+    "async-each-series": "^1.1.0"
   },
   "devDependencies": {
-    "@shinnn/eslintrc-node": "^1.0.2",
-    "eslint": "^0.24.0",
-    "istanbul": "^0.3.17",
+    "@shinnn/eslint-config-node-legacy": "^2.0.0",
+    "eslint": "^3.0.1",
+    "istanbul": "^0.4.4",
     "istanbul-coveralls": "^1.0.3",
-    "rimraf": "^2.4.1",
-    "tap-spec": "^4.0.2",
-    "tape": "^4.0.0"
+    "rimraf": "^2.5.3",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.0"
   }
 }
