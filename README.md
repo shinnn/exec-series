@@ -4,8 +4,8 @@
 [![Build Status](https://travis-ci.org/shinnn/exec-series.svg?branch=master)](https://travis-ci.org/shinnn/exec-series)
 [![Build status](https://ci.appveyor.com/api/projects/status/bi4pflltlq5368ym?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/exec-series)
 [![Coverage Status](https://img.shields.io/coveralls/shinnn/exec-series.svg)](https://coveralls.io/r/shinnn/exec-series)
-[![Dependency Status](https://img.shields.io/david/shinnn/exec-series.svg?label=deps)](https://david-dm.org/shinnn/exec-series)
-[![devDependency Status](https://img.shields.io/david/dev/shinnn/exec-series.svg?label=devDeps)](https://david-dm.org/shinnn/exec-series#info=devDependencies)
+[![Dependency Status](https://david-dm.org/shinnn/exec-series.svg)](https://david-dm.org/shinnn/exec-series)
+[![devDependency Status](https://david-dm.org/shinnn/exec-series/dev-status.svg)](https://david-dm.org/shinnn/exec-series#info=devDependencies)
 
 A [Node](https://nodejs.org/) module to run commands in order
 
