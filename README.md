@@ -51,7 +51,7 @@ const execSeries = require('exec-series');
 ### execSeries(*commands* [, *options*, *callback*])
 
 *commands*: `Array` of `String` (the commands to run)  
-*options*: `Object` ([child_process.exec][exec] options)  
+*options*: `Object` ([child_process.exec][exec] options with `maxBuffer` defaulting to 10 MB)  
 *callback*: `Function`
 
 It sequentially runs the commands using [child_process.exec][exec]. If the first command has finished successfully, the second command will run, and so on.
