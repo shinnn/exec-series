@@ -6,8 +6,8 @@
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
   "scripts": {
     "pretest": "eslint --fix --config @shinnn/node-legacy index.js test.js",
-    "test": "node test.js | tap-spec",
-    "coverage": "istanbul cover test.js",
+    "test": "node --strong_mode test.js | tap-spec",
+    "coverage": "node --strong_mode  node_modules/.bin/istanbul cover test.js",
     "coveralls": "${npm_package_scripts_coverage} && istanbul-coveralls"
   },
   "license": "MIT",

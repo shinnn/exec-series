@@ -1,33 +1,33 @@
-'use strict';
+'use strong';
 
-var fs = require('fs');
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
 
-var execSeries = require('./');
-var rimraf = require('rimraf');
-var test = require('tape');
+const execSeries = require('.');
+const rimraf = require('rimraf');
+const test = require('tape');
 
-test('execSeries()', function(t) {
+test('execSeries()', t => {
   t.plan(13);
 
-  t.equal(execSeries.name, 'execSeries', 'should have a function name.');
+  t.strictEqual(execSeries.name, 'execSeries', 'should have a function name.');
 
-  var tmpPath = path.resolve('__this__is__a__temporary__directory__', 'foobarbazqux');
+  const tmpPath = path.resolve('__this__is__a__temporary__directory__', 'foobarbazqux');
 
   execSeries([
     'mkdir ' + path.dirname(tmpPath),
     'mkdir ' + tmpPath
   ]);
 
-  setTimeout(function() {
-    fs.stat(tmpPath, function(err, stats) {
+  setTimeout(() => {
+    fs.stat(tmpPath, (err, stats) => {
       t.strictEqual(err, null, 'should regard callback function as optional.');
       t.ok(stats.isDirectory(), 'should run commands.');
       rimraf.sync(path.dirname(tmpPath));
     });
-  }, 120 + Number(!!process.env.CI) * 5000);
+  }, 120 + (Number(!!process.env.CI) * 5000));
 
-  execSeries(['node -e "console.log(1)"'], function(err, stdout, stderr) {
+  execSeries(['node -e "console.log(1)"'], (err, stdout, stderr) => {
     t.deepEqual(
       [err, stdout, stderr],
       [null, ['1\n'], ['']],
@@ -38,7 +38,7 @@ test('execSeries()', function(t) {
   execSeries([
     'node -e "console.log(1)"',
     'node -e "console.log(2); console.warn(1);"'
-  ], function(err, stdout, stderr) {
+  ], (err, stdout, stderr) => {
     t.deepEqual(
       [err, stdout, stderr],
       [null, ['1\n', '2\n'], ['', '1\n']],
@@ -50,7 +50,7 @@ test('execSeries()', function(t) {
     'node -e "console.log(1)"',
     'unknown-command',
     'node -e "console.log(3)"'
-  ], function(err, stdout, stderr) {
+  ], (err, stdout, stderr) => {
     t.notEqual(
       err.code, 0,
       'should pass an error to the callback when one of the commands fails.'
@@ -60,7 +60,7 @@ test('execSeries()', function(t) {
     t.ok(stderr[1].length > 0, 'should reflect stderr of the failed command.');
   });
 
-  execSeries(['node -e "console.log(1)"'], {encoding: 'base64'}, function(err, stdout) {
+  execSeries(['node -e "console.log(1)"'], {encoding: 'base64'}, (err, stdout) => {
     t.deepEqual(
       [err, stdout],
       [null, [new Buffer('1\n').toString('base64')]],
