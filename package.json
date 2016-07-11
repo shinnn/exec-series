@@ -1,6 +1,6 @@
 {
   "name": "exec-series",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Run commands in order",
   "repository": "shinnn/exec-series",
   "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
